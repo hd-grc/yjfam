@@ -12,34 +12,23 @@
     --text: #2d2418;
     --text-soft: #7a6e62;
     --border: #e0d8ce;
-
     --me:    #e07a5f;
     --wife:  #81b29a;
     --child: #f2cc8f;
     --mom:   #9b8ec4;
-
     --me-bg:    #fdf0ed;
     --wife-bg:  #edf5f1;
     --child-bg: #fdf8ed;
     --mom-bg:   #f3f0fa;
-
     --shift-D: #e07a5f;
     --shift-E: #5b8dd9;
     --shift-N: #3d3580;
-
     --shadow: 0 2px 16px rgba(45,36,24,0.08);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
-
-  /* ── 헤더 ── */
+  /* 헤더 */
   header {
     background: var(--card);
     border-bottom: 2px solid var(--border);
@@ -53,51 +42,27 @@
     box-shadow: 0 2px 12px rgba(45,36,24,0.07);
   }
   .header-left { display: flex; align-items: center; gap: 10px; }
-  .logo {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 900;
-    font-size: 1.4rem;
-    color: var(--text);
-    letter-spacing: -0.5px;
-  }
+  .logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.4rem; color: var(--text); letter-spacing: -0.5px; }
   .logo span { color: var(--me); }
   .nav-month { display: flex; align-items: center; gap: 12px; }
   .nav-btn {
-    background: var(--bg);
-    border: none;
-    border-radius: 50%;
-    width: 36px; height: 36px;
-    font-size: 1.1rem;
-    cursor: pointer;
+    background: var(--bg); border: none; border-radius: 50%;
+    width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    color: var(--text);
-    transition: background .15s;
+    color: var(--text); transition: background .15s;
   }
   .nav-btn:hover { background: var(--border); }
-  .month-label {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 1.15rem;
-    min-width: 100px;
-    text-align: center;
-  }
+  .month-label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.15rem; min-width: 100px; text-align: center; }
   .add-btn {
-    background: var(--me);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 10px 18px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    display: flex; align-items: center; gap: 6px;
+    background: var(--me); color: #fff; border: none; border-radius: 50px;
+    padding: 10px 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700;
+    font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; gap: 6px;
     transition: opacity .15s, transform .1s;
   }
   .add-btn:hover { opacity: .88; transform: translateY(-1px); }
   .add-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 
-  /* ── 동기화 상태 바 ── */
+  /* 동기화 바 */
   .sync-bar {
     background: var(--card);
     border-bottom: 1px solid var(--border);
@@ -108,65 +73,33 @@
     font-size: 0.78rem;
     color: var(--text-soft);
     font-weight: 600;
-    gap: 10px;
   }
-  .sync-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  .sync-status { display: flex; align-items: center; gap: 6px; }
   .sync-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #ccc;
-    flex-shrink: 0;
-    transition: background .3s;
+    width: 8px; height: 8px; border-radius: 50%; background: #ccc;
+    flex-shrink: 0; transition: background .3s;
   }
   .sync-dot.ok      { background: #52b788; }
   .sync-dot.loading { background: #f4a261; animation: pulse 1s infinite; }
   .sync-dot.error   { background: #e07a5f; }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: .3; }
-  }
-
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
   .sync-refresh {
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 3px 10px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-soft);
-    cursor: pointer;
-    transition: all .15s;
-    display: flex; align-items: center; gap: 4px;
-    white-space: nowrap;
+    background: none; border: 1px solid var(--border); border-radius: 6px;
+    padding: 3px 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-soft);
+    cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 4px; white-space: nowrap;
   }
   .sync-refresh:hover { background: var(--bg); border-color: var(--me); color: var(--me); }
 
-  /* ── 범례 ── */
+  /* 범례 */
   .legend {
-    display: flex;
-    gap: 10px;
-    padding: 12px 20px;
-    flex-wrap: wrap;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    align-items: center;
+    display: flex; gap: 10px; padding: 12px 20px;
+    flex-wrap: wrap; background: var(--card);
+    border-bottom: 1px solid var(--border); align-items: center;
   }
   .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 5px 12px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: opacity .15s;
-    border: 2px solid transparent;
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.85rem; font-weight: 600; padding: 5px 12px;
+    border-radius: 50px; cursor: pointer; transition: opacity .15s; border: 2px solid transparent;
   }
   .legend-item.active { border-color: currentColor; }
   .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -175,238 +108,107 @@
   .legend-item[data-who="child"] { color: var(--child); background: var(--child-bg); }
   .legend-item[data-who="mom"]   { color: var(--mom);   background: var(--mom-bg); }
   .legend-divider { width: 1px; height: 20px; background: var(--border); margin: 0 2px; }
-  .shift-legend {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--text-soft);
-  }
-  .shift-badge-sm {
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: #fff;
-  }
+  .shift-legend { display: flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 700; color: var(--text-soft); }
+  .shift-badge-sm { padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 800; color: #fff; }
   .shift-badge-sm.D { background: var(--shift-D); }
   .shift-badge-sm.E { background: var(--shift-E); }
   .shift-badge-sm.N { background: var(--shift-N); }
 
-  /* ── 캘린더 ── */
+  /* 캘린더 */
   .calendar-wrap { padding: 16px; }
-  .day-headers {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-    margin-bottom: 6px;
-  }
-  .day-header {
-    text-align: center;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 0.78rem;
-    letter-spacing: 0.5px;
-    padding: 4px 0;
-    color: var(--text-soft);
-  }
+  .day-headers { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; margin-bottom: 6px; }
+  .day-header { text-align: center; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.78rem; letter-spacing: 0.5px; padding: 4px 0; color: var(--text-soft); }
   .day-header.sun { color: #e07a5f; }
   .day-header.sat { color: #7a9ec4; }
-
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-  }
+  .calendar-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; }
   .day-cell {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 8px 6px 6px;
-    min-height: 100px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color .15s, transform .1s, box-shadow .15s;
-    position: relative;
-    overflow: hidden;
+    background: var(--card); border-radius: 12px; padding: 8px 6px 6px;
+    min-height: 100px; cursor: pointer; border: 2px solid transparent;
+    transition: border-color .15s, transform .1s, box-shadow .15s; position: relative; overflow: hidden;
   }
   .day-cell:hover { border-color: var(--border); transform: translateY(-1px); box-shadow: var(--shadow); }
   .day-cell.today { border-color: var(--me); }
   .day-cell.other-month { opacity: .38; }
-
   .day-num {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 0.95rem;
-    margin-bottom: 4px;
-    display: inline-flex;
-    width: 26px; height: 26px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px;
+    display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; border-radius: 50%;
   }
   .day-cell.today .day-num { background: var(--me); color: #fff; }
   .day-cell.sun .day-num { color: #e07a5f; }
   .day-cell.sat .day-num { color: #7a9ec4; }
-
   .events-list { display: flex; flex-direction: column; gap: 3px; }
   .event-chip {
-    border-radius: 6px;
-    padding: 2px 7px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
-    transition: opacity .1s;
+    border-radius: 6px; padding: 2px 7px; font-size: 0.7rem; font-weight: 700;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; transition: opacity .1s;
   }
   .event-chip:hover { opacity: .8; }
   .event-chip[data-who="me"]    { background: var(--me);    color: #fff; }
   .event-chip[data-who="wife"]  { background: var(--wife);  color: #fff; }
   .event-chip[data-who="child"] { background: var(--child); color: #5a4a20; }
   .event-chip[data-who="mom"]   { background: var(--mom);   color: #fff; }
-
   .shift-banner {
-    border-radius: 6px;
-    padding: 2px 7px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: opacity .1s;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    white-space: nowrap;
-    overflow: hidden;
+    border-radius: 6px; padding: 2px 7px; font-size: 0.7rem; font-weight: 800;
+    cursor: pointer; transition: opacity .1s; display: flex; align-items: center;
+    gap: 3px; white-space: nowrap; overflow: hidden;
   }
   .shift-banner:hover { opacity: .82; }
   .shift-banner.D { background: var(--shift-D); color: #fff; }
   .shift-banner.E { background: var(--shift-E); color: #fff; }
   .shift-banner.N { background: var(--shift-N); color: #fff; }
-
-  .more-chip {
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--text-soft);
-    padding-left: 4px;
-  }
+  .more-chip { font-size: 0.65rem; font-weight: 700; color: var(--text-soft); padding-left: 4px; }
   .day-cell-plus {
-    position: absolute;
-    bottom: 6px; right: 8px;
-    font-size: 1.1rem;
-    color: var(--border);
-    transition: color .15s;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 900;
-    line-height: 1;
+    position: absolute; bottom: 6px; right: 8px; font-size: 1.1rem; color: var(--border);
+    transition: color .15s; font-family: 'Nunito', sans-serif; font-weight: 900; line-height: 1;
   }
   .day-cell:hover .day-cell-plus { color: var(--me); }
 
-  /* ── 로딩 오버레이 ── */
+  /* 로딩 오버레이 */
   .loading-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(240,235,227,0.7);
-    z-index: 300;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 14px;
-    backdrop-filter: blur(2px);
+    display: none; position: fixed; inset: 0;
+    background: rgba(240,235,227,0.75); z-index: 300;
+    align-items: center; justify-content: center;
+    flex-direction: column; gap: 14px; backdrop-filter: blur(2px);
   }
   .loading-overlay.show { display: flex; }
   .loading-spinner {
-    width: 40px; height: 40px;
-    border: 4px solid var(--border);
-    border-top-color: var(--me);
-    border-radius: 50%;
-    animation: spin .7s linear infinite;
+    width: 40px; height: 40px; border: 4px solid var(--border);
+    border-top-color: var(--me); border-radius: 50%; animation: spin .7s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-text {
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--text-soft);
-  }
+  .loading-text { font-weight: 700; font-size: 0.95rem; color: var(--text-soft); }
 
-  /* ── 모달 공통 ── */
+  /* 모달 공통 */
   .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(45,36,24,0.35);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    backdrop-filter: blur(3px);
+    display: none; position: fixed; inset: 0;
+    background: rgba(45,36,24,0.35); z-index: 200;
+    align-items: center; justify-content: center; padding: 16px; backdrop-filter: blur(3px);
   }
   .modal-overlay.open { display: flex; }
   .modal {
-    background: var(--card);
-    border-radius: 20px;
-    padding: 28px 24px 24px;
-    width: 100%;
-    max-width: 420px;
-    max-height: 92vh;
-    overflow-y: auto;
-    box-shadow: 0 16px 48px rgba(45,36,24,0.2);
-    animation: popIn .2s ease;
+    background: var(--card); border-radius: 20px; padding: 28px 24px 24px;
+    width: 100%; max-width: 420px; max-height: 92vh; overflow-y: auto;
+    box-shadow: 0 16px 48px rgba(45,36,24,0.2); animation: popIn .2s ease;
   }
-  @keyframes popIn {
-    from { transform: scale(.92); opacity: 0; }
-    to   { transform: scale(1);   opacity: 1; }
-  }
-  .modal-title {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 900;
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-    display: flex; align-items: center; gap: 8px;
-  }
+  @keyframes popIn { from{transform:scale(.92);opacity:0} to{transform:scale(1);opacity:1} }
+  .modal-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
   .form-group { margin-bottom: 14px; }
-  .form-group label {
-    display: block;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--text-soft);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--text-soft); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
   .form-group input,
   .form-group textarea {
-    width: 100%;
-    padding: 11px 14px;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.95rem;
-    color: var(--text);
-    background: var(--bg);
-    outline: none;
-    transition: border-color .15s;
+    width: 100%; padding: 11px 14px; border: 2px solid var(--border); border-radius: 10px;
+    font-family: 'Noto Sans KR', sans-serif; font-size: 0.95rem; color: var(--text);
+    background: var(--bg); outline: none; transition: border-color .15s;
   }
   .form-group input:focus,
   .form-group textarea:focus { border-color: var(--me); }
   .form-group textarea { resize: vertical; min-height: 70px; }
 
-  .who-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
+  /* 누구 버튼 */
+  .who-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .who-btn {
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid var(--border);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 0.88rem;
-    cursor: pointer;
-    background: var(--bg);
-    color: var(--text-soft);
-    transition: all .15s;
+    padding: 10px; border-radius: 10px; border: 2px solid var(--border);
+    font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 0.88rem;
+    cursor: pointer; background: var(--bg); color: var(--text-soft); transition: all .15s;
     display: flex; align-items: center; gap: 6px; justify-content: center;
   }
   .who-btn .dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -417,192 +219,81 @@
 
   /* 근무 패널 */
   .shift-panel {
-    background: #f4f2fb;
-    border: 2px solid #d4ccea;
-    border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 14px;
-    display: none;
+    background: #f4f2fb; border: 2px solid #d4ccea;
+    border-radius: 12px; padding: 14px; margin-bottom: 14px; display: none;
   }
   .shift-panel.visible { display: block; animation: fadeSlide .18s ease; }
-  @keyframes fadeSlide {
-    from { opacity: 0; transform: translateY(-5px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .shift-panel-title {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #5b4ba0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
-  }
+  @keyframes fadeSlide { from{opacity:0;transform:translateY(-5px)} to{opacity:1;transform:translateY(0)} }
+  .shift-panel-title { font-size: 0.8rem; font-weight: 700; color: #5b4ba0; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
   .shift-options { display: flex; gap: 8px; }
   .shift-opt {
-    flex: 1;
-    padding: 12px 6px;
-    border-radius: 10px;
-    border: 2px solid var(--border);
-    cursor: pointer;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all .15s;
-    user-select: none;
+    flex: 1; padding: 12px 6px; border-radius: 10px; border: 2px solid var(--border);
+    cursor: pointer; background: #fff; display: flex; flex-direction: column;
+    align-items: center; transition: all .15s; user-select: none;
   }
-  .shift-opt .s-letter {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 900;
-    font-size: 1.5rem;
-    line-height: 1;
-  }
+  .shift-opt .s-letter { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; line-height: 1; }
   .shift-opt[data-shift="D"] .s-letter { color: var(--shift-D); }
   .shift-opt[data-shift="E"] .s-letter { color: var(--shift-E); }
   .shift-opt[data-shift="N"] .s-letter { color: var(--shift-N); }
   .shift-opt.selected[data-shift="D"] { background: #fdf0ed; border-color: var(--shift-D); }
   .shift-opt.selected[data-shift="E"] { background: #edf2fc; border-color: var(--shift-E); }
   .shift-opt.selected[data-shift="N"] { background: #ededf8; border-color: var(--shift-N); }
-  .shift-notice {
-    font-size: 0.71rem;
-    color: var(--text-soft);
-    margin-top: 10px;
-    text-align: center;
-  }
-
+  .shift-notice { font-size: 0.71rem; color: var(--text-soft); margin-top: 10px; text-align: center; }
   .shift-toggle-btn {
-    width: 100%;
-    padding: 9px 14px;
-    border-radius: 10px;
-    border: 2px dashed var(--border);
-    background: transparent;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--text-soft);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    transition: all .15s;
-    margin-bottom: 14px;
+    width: 100%; padding: 9px 14px; border-radius: 10px; border: 2px dashed var(--border);
+    background: transparent; font-family: 'Noto Sans KR', sans-serif; font-weight: 700;
+    font-size: 0.85rem; color: var(--text-soft); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    transition: all .15s; margin-bottom: 14px;
   }
   .shift-toggle-btn:hover { border-color: #9b8ec4; color: #5b4ba0; background: #f4f2fb; }
   .shift-toggle-btn.active { border-color: #9b8ec4; color: #5b4ba0; background: #f4f2fb; border-style: solid; }
 
+  /* 버튼 */
   .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
   .btn-save {
-    flex: 1;
-    background: var(--me);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    padding: 13px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: opacity .15s;
+    flex: 1; background: var(--me); color: #fff; border: none; border-radius: 10px;
+    padding: 13px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 1rem;
+    cursor: pointer; transition: opacity .15s;
   }
   .btn-save:hover { opacity: .88; }
   .btn-save:disabled { opacity: .5; cursor: not-allowed; }
   .btn-cancel {
-    background: var(--bg);
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 13px 20px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    color: var(--text-soft);
+    background: var(--bg); border: 2px solid var(--border); border-radius: 10px;
+    padding: 13px 20px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700;
+    font-size: 1rem; cursor: pointer; color: var(--text-soft);
   }
 
-  /* ── 상세 모달 ── */
+  /* 상세 모달 */
   .detail-modal { max-width: 380px; }
   .detail-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 12px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 8px;
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
+    border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px;
   }
   .detail-badge[data-who="me"]    { background: var(--me-bg);    color: var(--me); }
   .detail-badge[data-who="wife"]  { background: var(--wife-bg);  color: var(--wife); }
   .detail-badge[data-who="child"] { background: var(--child-bg); color: #5a4a20; }
   .detail-badge[data-who="mom"]   { background: var(--mom-bg);   color: var(--mom); }
-  .detail-title {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 900;
-    font-size: 1.4rem;
-    margin-bottom: 4px;
-    line-height: 1.25;
-  }
-  .shift-detail-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin: 6px 0;
-  }
-  .shift-detail-chip {
-    padding: 6px 16px;
-    border-radius: 8px;
-    font-weight: 800;
-    font-size: 0.95rem;
-    color: #fff;
-    display: flex; align-items: center; gap: 5px;
-  }
+  .detail-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.4rem; margin-bottom: 4px; line-height: 1.25; }
+  .shift-detail-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+  .shift-detail-chip { padding: 6px 16px; border-radius: 8px; font-weight: 800; font-size: 0.95rem; color: #fff; display: flex; align-items: center; gap: 5px; }
   .shift-detail-chip.D { background: var(--shift-D); }
   .shift-detail-chip.E { background: var(--shift-E); }
   .shift-detail-chip.N { background: var(--shift-N); }
-  .detail-date {
-    font-size: 0.88rem;
-    color: var(--text-soft);
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  .detail-memo {
-    background: var(--bg);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--text);
-    white-space: pre-wrap;
-  }
+  .detail-date { font-size: 0.88rem; color: var(--text-soft); font-weight: 600; margin-bottom: 10px; }
+  .detail-memo { background: var(--bg); border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; line-height: 1.6; color: var(--text); white-space: pre-wrap; }
   .detail-actions { display: flex; gap: 8px; margin-top: 20px; }
   .btn-delete {
-    flex: 1;
-    background: #fdecea;
-    color: #c0392b;
-    border: none;
-    border-radius: 10px;
-    padding: 12px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: opacity .15s;
+    flex: 1; background: #fdecea; color: #c0392b; border: none; border-radius: 10px;
+    padding: 12px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer;
   }
   .btn-delete:disabled { opacity: .5; cursor: not-allowed; }
   .btn-close {
-    flex: 1;
-    background: var(--bg);
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 12px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    color: var(--text-soft);
+    flex: 1; background: var(--bg); border: 2px solid var(--border); border-radius: 10px;
+    padding: 12px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; color: var(--text-soft);
   }
 
-  /* ── 모바일 ── */
+  /* 모바일 */
   @media (max-width: 600px) {
     header { padding: 12px 14px; }
     .logo { font-size: 1.15rem; }
@@ -621,7 +312,6 @@
     .modal { padding: 20px 16px 18px; }
     .sync-bar { padding: 6px 14px; font-size: 0.72rem; }
   }
-
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -629,7 +319,6 @@
 </head>
 <body>
 
-<!-- 헤더 -->
 <header>
   <div class="header-left">
     <div class="logo">우리집 <span>🏠</span></div>
@@ -642,7 +331,6 @@
   <button class="add-btn" id="openAddBtn">＋ <span>일정 추가</span></button>
 </header>
 
-<!-- 동기화 상태 -->
 <div class="sync-bar">
   <div class="sync-status">
     <div class="sync-dot loading" id="syncDot"></div>
@@ -651,20 +339,11 @@
   <button class="sync-refresh" id="refreshBtn">🔄 새로고침</button>
 </div>
 
-<!-- 범례 -->
 <div class="legend">
-  <div class="legend-item active" data-who="me">
-    <div class="legend-dot" style="background:var(--me)"></div> 윤재
-  </div>
-  <div class="legend-item active" data-who="wife">
-    <div class="legend-dot" style="background:var(--wife)"></div> 윤정
-  </div>
-  <div class="legend-item active" data-who="child">
-    <div class="legend-dot" style="background:var(--child)"></div> 서원
-  </div>
-  <div class="legend-item active" data-who="mom">
-    <div class="legend-dot" style="background:var(--mom)"></div> 서여사님
-  </div>
+  <div class="legend-item active" data-who="me"><div class="legend-dot" style="background:var(--me)"></div> 윤재</div>
+  <div class="legend-item active" data-who="wife"><div class="legend-dot" style="background:var(--wife)"></div> 윤정</div>
+  <div class="legend-item active" data-who="child"><div class="legend-dot" style="background:var(--child)"></div> 서원</div>
+  <div class="legend-item active" data-who="mom"><div class="legend-dot" style="background:var(--mom)"></div> 서여사님</div>
   <div class="legend-divider"></div>
   <div class="shift-legend">
     <span class="shift-badge-sm D">D</span>
@@ -674,7 +353,6 @@
   </div>
 </div>
 
-<!-- 캘린더 -->
 <div class="calendar-wrap">
   <div class="day-headers">
     <div class="day-header">월</div>
@@ -688,41 +366,29 @@
   <div class="calendar-grid" id="calendarGrid"></div>
 </div>
 
-<!-- 로딩 오버레이 -->
+<!-- 로딩 -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-spinner"></div>
-  <div class="loading-text" id="loadingText">저장 중...</div>
+  <div class="loading-text" id="loadingText">처리 중...</div>
 </div>
 
 <!-- 일정 추가 모달 -->
 <div class="modal-overlay" id="addModal">
   <div class="modal">
     <div class="modal-title">📅 일정 추가</div>
-
     <div class="form-group">
       <label>날짜</label>
       <input type="date" id="inputDate">
     </div>
-
     <div class="form-group">
       <label>누구 일정?</label>
       <div class="who-group">
-        <button class="who-btn" data-who="me">
-          <span class="dot" style="background:var(--me)"></span> 윤재
-        </button>
-        <button class="who-btn" data-who="wife">
-          <span class="dot" style="background:var(--wife)"></span> 윤정
-        </button>
-        <button class="who-btn" data-who="child">
-          <span class="dot" style="background:var(--child)"></span> 서원
-        </button>
-        <button class="who-btn" data-who="mom">
-          <span class="dot" style="background:var(--mom)"></span> 서여사님
-        </button>
+        <button class="who-btn" data-who="me"><span class="dot" style="background:var(--me)"></span> 윤재</button>
+        <button class="who-btn" data-who="wife"><span class="dot" style="background:var(--wife)"></span> 윤정</button>
+        <button class="who-btn" data-who="child"><span class="dot" style="background:var(--child)"></span> 서원</button>
+        <button class="who-btn" data-who="mom"><span class="dot" style="background:var(--mom)"></span> 서여사님</button>
       </div>
     </div>
-
-    <!-- 일정 내용 (사람 선택 후 표시) -->
     <div id="scheduleFields" style="display:none">
       <div class="form-group">
         <label>시간 (선택)</label>
@@ -733,14 +399,10 @@
         <input type="text" id="inputTitle" placeholder="예: 병원 예약, 학교 소풍...">
       </div>
     </div>
-
-    <!-- 근무 추가 토글 -->
     <button class="shift-toggle-btn" id="shiftToggleBtn" style="display:none">
       <span id="shiftToggleIcon">💉</span>
       <span id="shiftToggleText">근무 추가하기</span>
     </button>
-
-    <!-- 근무 선택 패널 -->
     <div class="shift-panel" id="shiftPanel">
       <div class="shift-panel-title">💉 근무 선택 (중복 가능)</div>
       <div class="shift-options">
@@ -750,12 +412,10 @@
       </div>
       <div class="shift-notice">※ 중복 선택 가능 · 일정 없이 근무만도 OK</div>
     </div>
-
     <div class="form-group">
       <label>메모 (선택)</label>
       <textarea id="inputMemo" placeholder="추가 메모를 적어주세요..."></textarea>
     </div>
-
     <div class="modal-actions">
       <button class="btn-cancel" id="cancelAddBtn">취소</button>
       <button class="btn-save" id="saveBtn">저장하기</button>
@@ -779,51 +439,44 @@
 </div>
 
 <script>
-// ══════════════════════════════════════════
-//  설정
-// ══════════════════════════════════════════
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAv0bEK-n0Bkyzq2A5Gk1jpuXO3RuXvlMnmHWiPEHxosbYBMYLbVEqlRvxuxBIGhxi7A/exec';
+// ── 설정 ──
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEej0MTiyEqsn1S1DX6nfmRRyaED3dP7KrWmO4ffZyFNVSV90lTfgoXPfd9obD5Ws8/exec';
 
-const WHO_LABEL  = { me: '윤재', wife: '윤정', child: '서원', mom: '서여사님' };
-const SHIFT_ICON = { D: '☀️', E: '🌆', N: '🌙' };
+const WHO_LABEL  = { me:'윤재', wife:'윤정', child:'서원', mom:'서여사님' };
+const SHIFT_ICON = { D:'☀️', E:'🌆', N:'🌙' };
 const MONTH_KR   = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 const DAY_KR     = ['일','월','화','수','목','금','토'];
 
-let events = [];
-let currentDate  = new Date();
-let currentYear  = currentDate.getFullYear();
-let currentMonth = currentDate.getMonth();
+let events         = [];
+let currentYear    = new Date().getFullYear();
+let currentMonth   = new Date().getMonth();
 let selectedWho    = null;
 let selectedShifts = new Set();
 let shiftPanelOpen = false;
 let viewingEventId = null;
 let hiddenWho      = new Set();
 
-// ══════════════════════════════════════════
-//  Google Sheets API
-// ══════════════════════════════════════════
+// ── Google Sheets 연동 ──
 function setSyncStatus(status, text) {
-  const dot  = document.getElementById('syncDot');
-  const span = document.getElementById('syncText');
-  dot.className  = 'sync-dot ' + status;
-  span.textContent = text;
+  document.getElementById('syncDot').className  = 'sync-dot ' + status;
+  document.getElementById('syncText').textContent = text;
 }
 
 async function fetchEvents() {
   setSyncStatus('loading', '불러오는 중...');
   try {
-    const res  = await fetch(SCRIPT_URL);
+    const res  = await fetch(SCRIPT_URL + '?t=' + Date.now());
     const data = await res.json();
     events = data.map(r => ({
       ...r,
       shifts: Array.isArray(r.shifts) ? r.shifts.filter(Boolean) : []
     }));
     const now = new Date();
-    setSyncStatus('ok', `마지막 업데이트: ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`);
+    setSyncStatus('ok', `마지막 업데이트 ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`);
     renderCalendar();
-  } catch (e) {
+  } catch(err) {
     setSyncStatus('error', '연결 실패 — 새로고침 해보세요');
-    console.error(e);
+    console.error(err);
   }
 }
 
@@ -832,10 +485,10 @@ async function addEvent(ev) {
   try {
     await fetch(SCRIPT_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'add', ...ev })
+      body: JSON.stringify({ action:'add', ...ev })
     });
     await fetchEvents();
-  } catch (e) {
+  } catch(err) {
     setSyncStatus('error', '저장 실패');
     alert('저장에 실패했습니다. 다시 시도해주세요.');
   } finally {
@@ -848,10 +501,10 @@ async function deleteEvent(id) {
   try {
     await fetch(SCRIPT_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'delete', id })
+      body: JSON.stringify({ action:'delete', id })
     });
     await fetchEvents();
-  } catch (e) {
+  } catch(err) {
     setSyncStatus('error', '삭제 실패');
     alert('삭제에 실패했습니다. 다시 시도해주세요.');
   } finally {
@@ -871,29 +524,25 @@ function hideLoading() {
   document.getElementById('deleteBtn').disabled = false;
 }
 
-// ══════════════════════════════════════════
-//  캘린더 렌더링
-// ══════════════════════════════════════════
 function uid() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2,6);
 }
 
+// ── 캘린더 렌더링 ──
 function renderCalendar() {
   document.getElementById('monthLabel').textContent = `${currentYear}. ${MONTH_KR[currentMonth]}`;
   const grid = document.getElementById('calendarGrid');
   grid.innerHTML = '';
 
-  const today    = new Date();
-  const todayStr = dateStr(today);
-  const firstDay = new Date(currentYear, currentMonth, 1);
-  let startDow   = (firstDay.getDay() + 6) % 7;
+  const todayStr        = dateStr(new Date());
+  const firstDay        = new Date(currentYear, currentMonth, 1);
+  const startDow        = (firstDay.getDay() + 6) % 7;
   const daysInMonth     = new Date(currentYear, currentMonth + 1, 0).getDate();
   const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
-  const totalCells = Math.ceil((startDow + daysInMonth) / 7) * 7;
+  const totalCells      = Math.ceil((startDow + daysInMonth) / 7) * 7;
 
   for (let i = 0; i < totalCells; i++) {
     let day, month, year, isOtherMonth = false;
-
     if (i < startDow) {
       day = daysInPrevMonth - startDow + 1 + i;
       month = currentMonth - 1; year = currentYear;
@@ -905,13 +554,12 @@ function renderCalendar() {
       if (month > 11) { month = 0; year++; }
       isOtherMonth = true;
     } else {
-      day = i - startDow + 1;
-      month = currentMonth; year = currentYear;
+      day = i - startDow + 1; month = currentMonth; year = currentYear;
     }
 
     const cellDate = new Date(year, month, day);
-    const dStr = dateStr(cellDate);
-    const dow  = cellDate.getDay();
+    const dStr     = dateStr(cellDate);
+    const dow      = cellDate.getDay();
 
     const cellEvents = events
       .filter(e => e.date === dStr && !hiddenWho.has(e.who))
@@ -929,7 +577,6 @@ function renderCalendar() {
       + (dStr === todayStr ? ' today' : '')
       + (dow === 0 ? ' sun' : '')
       + (dow === 6 ? ' sat' : '');
-    cell.dataset.date = dStr;
 
     const numDiv = document.createElement('div');
     numDiv.className = 'day-num';
@@ -938,20 +585,18 @@ function renderCalendar() {
 
     const list = document.createElement('div');
     list.className = 'events-list';
-
     const MAX = window.innerWidth < 480 ? 2 : 3;
     let chipCount = 0, overflow = 0;
 
     cellEvents.forEach(ev => {
       const hasShift = ev.shifts && ev.shifts.length > 0;
       const hasTitle = ev.title && ev.title.trim();
-
       if (hasShift) {
         ev.shifts.forEach(s => {
           if (chipCount < MAX) {
             const banner = document.createElement('div');
             banner.className = `shift-banner ${s}`;
-            banner.innerHTML = `${SHIFT_ICON[s]} ${s}${hasTitle ? ' · ' + ev.title : ''}`;
+            banner.innerHTML = `${SHIFT_ICON[s]} ${s}${hasTitle ? ' · '+ev.title : ''}`;
             banner.addEventListener('click', e => { e.stopPropagation(); openDetail(ev.id); });
             list.appendChild(banner);
             chipCount++;
@@ -962,7 +607,7 @@ function renderCalendar() {
           const chip = document.createElement('div');
           chip.className = 'event-chip';
           chip.dataset.who = ev.who;
-          chip.textContent = (ev.time ? ev.time.slice(0,5) + ' ' : '') + ev.title;
+          chip.textContent = (ev.time ? ev.time.slice(0,5)+' ' : '') + ev.title;
           chip.addEventListener('click', e => { e.stopPropagation(); openDetail(ev.id); });
           list.appendChild(chip);
           chipCount++;
@@ -998,9 +643,7 @@ function formatDateKR(dStr) {
   return `${y}년 ${m}월 ${d}일 (${DAY_KR[dt.getDay()]})`;
 }
 
-// ══════════════════════════════════════════
-//  네비게이션
-// ══════════════════════════════════════════
+// ── 네비게이션 ──
 document.getElementById('prevBtn').addEventListener('click', () => {
   if (--currentMonth < 0) { currentMonth = 11; currentYear--; }
   renderCalendar();
@@ -1011,9 +654,7 @@ document.getElementById('nextBtn').addEventListener('click', () => {
 });
 document.getElementById('refreshBtn').addEventListener('click', fetchEvents);
 
-// ══════════════════════════════════════════
-//  범례 토글
-// ══════════════════════════════════════════
+// ── 범례 토글 ──
 document.querySelectorAll('.legend-item').forEach(el => {
   el.addEventListener('click', () => {
     const who = el.dataset.who;
@@ -1023,9 +664,7 @@ document.querySelectorAll('.legend-item').forEach(el => {
   });
 });
 
-// ══════════════════════════════════════════
-//  일정 추가 모달
-// ══════════════════════════════════════════
+// ── 일정 추가 모달 ──
 function openAdd(dStr) {
   document.getElementById('inputDate').value  = dStr || dateStr(new Date());
   document.getElementById('inputTime').value  = '';
@@ -1034,14 +673,12 @@ function openAdd(dStr) {
   selectedWho    = null;
   selectedShifts = new Set();
   shiftPanelOpen = false;
-
   document.querySelectorAll('.who-btn').forEach(b => b.classList.remove('selected'));
   document.querySelectorAll('.shift-opt').forEach(b => b.classList.remove('selected'));
-  document.getElementById('scheduleFields').style.display  = 'none';
-  document.getElementById('shiftToggleBtn').style.display  = 'none';
+  document.getElementById('scheduleFields').style.display = 'none';
+  document.getElementById('shiftToggleBtn').style.display = 'none';
   document.getElementById('shiftPanel').classList.remove('visible');
   resetShiftToggle();
-
   document.getElementById('addModal').classList.add('open');
 }
 
@@ -1053,7 +690,6 @@ function resetShiftToggle() {
 
 document.getElementById('openAddBtn').addEventListener('click', () => openAdd(dateStr(new Date())));
 
-// 누구 선택
 document.querySelectorAll('.who-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     selectedWho = btn.dataset.who;
@@ -1064,7 +700,6 @@ document.querySelectorAll('.who-btn').forEach(btn => {
   });
 });
 
-// 근무 토글
 document.getElementById('shiftToggleBtn').addEventListener('click', () => {
   shiftPanelOpen = !shiftPanelOpen;
   const panel = document.getElementById('shiftPanel');
@@ -1082,7 +717,6 @@ document.getElementById('shiftToggleBtn').addEventListener('click', () => {
   }
 });
 
-// 근무 다중 선택
 document.querySelectorAll('.shift-opt').forEach(btn => {
   btn.addEventListener('click', () => {
     const s = btn.dataset.shift;
@@ -1091,35 +725,29 @@ document.querySelectorAll('.shift-opt').forEach(btn => {
   });
 });
 
-document.getElementById('cancelAddBtn').addEventListener('click', closeAdd);
-document.getElementById('addModal').addEventListener('click', e => {
-  if (e.target === e.currentTarget) closeAdd();
-});
-function closeAdd() {
+document.getElementById('cancelAddBtn').addEventListener('click', () => {
   document.getElementById('addModal').classList.remove('open');
-}
+});
+document.getElementById('addModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) document.getElementById('addModal').classList.remove('open');
+});
 
-// 저장
 document.getElementById('saveBtn').addEventListener('click', async () => {
-  const date  = document.getElementById('inputDate').value;
-  const time  = document.getElementById('inputTime').value;
-  const title = document.getElementById('inputTitle').value.trim();
-  const memo  = document.getElementById('inputMemo').value.trim();
+  const date   = document.getElementById('inputDate').value;
+  const time   = document.getElementById('inputTime').value;
+  const title  = document.getElementById('inputTitle').value.trim();
+  const memo   = document.getElementById('inputMemo').value.trim();
   const shifts = ['D','E','N'].filter(s => selectedShifts.has(s));
 
   if (!date)        { alert('날짜를 선택해주세요!'); return; }
   if (!selectedWho) { alert('누구의 일정인지 선택해주세요!'); return; }
-  if (!title && shifts.length === 0) {
-    alert('일정 내용을 입력하거나 근무를 선택해주세요!'); return;
-  }
+  if (!title && shifts.length === 0) { alert('일정 내용을 입력하거나 근무를 선택해주세요!'); return; }
 
-  closeAdd();
+  document.getElementById('addModal').classList.remove('open');
   await addEvent({ id: uid(), date, time, title, who: selectedWho, memo, shifts });
 });
 
-// ══════════════════════════════════════════
-//  상세 모달
-// ══════════════════════════════════════════
+// ── 상세 모달 ──
 function openDetail(id) {
   const ev = events.find(e => e.id === id);
   if (!ev) return;
@@ -1167,9 +795,7 @@ document.getElementById('deleteBtn').addEventListener('click', async () => {
   await deleteEvent(viewingEventId);
 });
 
-// ══════════════════════════════════════════
-//  초기 로드
-// ══════════════════════════════════════════
+// ── 초기 로드 ──
 fetchEvents();
 </script>
 </body>
