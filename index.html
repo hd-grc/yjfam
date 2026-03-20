@@ -355,13 +355,13 @@
 
 <div class="calendar-wrap">
   <div class="day-headers">
+    <div class="day-header sun">일</div>
     <div class="day-header">월</div>
     <div class="day-header">화</div>
     <div class="day-header">수</div>
     <div class="day-header">목</div>
     <div class="day-header">금</div>
     <div class="day-header sat">토</div>
-    <div class="day-header sun">일</div>
   </div>
   <div class="calendar-grid" id="calendarGrid"></div>
 </div>
@@ -536,7 +536,7 @@ function renderCalendar() {
 
   const todayStr        = dateStr(new Date());
   const firstDay        = new Date(currentYear, currentMonth, 1);
-  const startDow        = (firstDay.getDay() + 6) % 7;
+  const startDow        = firstDay.getDay(); // 일요일=0
   const daysInMonth     = new Date(currentYear, currentMonth + 1, 0).getDate();
   const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
   const totalCells      = Math.ceil((startDow + daysInMonth) / 7) * 7;
