@@ -12,17 +12,18 @@
     --text: #2d2418;
     --text-soft: #7a6e62;
     --border: #e0d8ce;
-    --me:    #e07a5f;
+    --me:    #9b8ec4;
     --wife:  #81b29a;
     --child: #f2cc8f;
-    --mom:   #9b8ec4;
-    --me-bg:    #fdf0ed;
+    --mom:   #5b8dd9;
+    --me-bg:    #f3f0fa;
     --wife-bg:  #edf5f1;
     --child-bg: #fdf8ed;
-    --mom-bg:   #f3f0fa;
+    --mom-bg:   #edf2fc;
     --shift-D: #e07a5f;
     --shift-E: #5b8dd9;
     --shift-N: #3d3580;
+    --accent:  #e07a5f;
     --shadow: 0 2px 16px rgba(45,36,24,0.08);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,7 +55,7 @@
   .nav-btn:hover { background: var(--border); }
   .month-label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.15rem; min-width: 100px; text-align: center; }
   .add-btn {
-    background: var(--me); color: #fff; border: none; border-radius: 50px;
+    background: var(--accent); color: #fff; border: none; border-radius: 50px;
     padding: 10px 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700;
     font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; gap: 6px;
     transition: opacity .15s, transform .1s;
@@ -88,7 +89,7 @@
     padding: 3px 10px; font-size: 0.75rem; font-weight: 700; color: var(--text-soft);
     cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 4px; white-space: nowrap;
   }
-  .sync-refresh:hover { background: var(--bg); border-color: var(--me); color: var(--me); }
+  .sync-refresh:hover { background: var(--bg); border-color: var(--accent); color: var(--accent); }
 
   /* 범례 */
   .legend {
@@ -127,13 +128,13 @@
     transition: border-color .15s, transform .1s, box-shadow .15s; position: relative; overflow: hidden;
   }
   .day-cell:hover { border-color: var(--border); transform: translateY(-1px); box-shadow: var(--shadow); }
-  .day-cell.today { border-color: var(--me); }
+  .day-cell.today { border-color: var(--accent); }
   .day-cell.other-month { opacity: .38; }
   .day-num {
     font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px;
     display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; border-radius: 50%;
   }
-  .day-cell.today .day-num { background: var(--me); color: #fff; }
+  .day-cell.today .day-num { background: var(--accent); color: #fff; }
   .day-cell.sun .day-num { color: #e07a5f; }
   .day-cell.sat .day-num { color: #7a9ec4; }
   .events-list { display: flex; flex-direction: column; gap: 3px; }
@@ -160,7 +161,7 @@
     position: absolute; bottom: 6px; right: 8px; font-size: 1.1rem; color: var(--border);
     transition: color .15s; font-family: 'Nunito', sans-serif; font-weight: 900; line-height: 1;
   }
-  .day-cell:hover .day-cell-plus { color: var(--me); }
+  .day-cell:hover .day-cell-plus { color: var(--accent); }
 
   /* 로딩 오버레이 */
   .loading-overlay {
@@ -172,7 +173,7 @@
   .loading-overlay.show { display: flex; }
   .loading-spinner {
     width: 40px; height: 40px; border: 4px solid var(--border);
-    border-top-color: var(--me); border-radius: 50%; animation: spin .7s linear infinite;
+    border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading-text { font-weight: 700; font-size: 0.95rem; color: var(--text-soft); }
@@ -200,7 +201,7 @@
     background: var(--bg); outline: none; transition: border-color .15s;
   }
   .form-group input:focus,
-  .form-group textarea:focus { border-color: var(--me); }
+  .form-group textarea:focus { border-color: var(--accent); }
   .form-group textarea { resize: vertical; min-height: 70px; }
 
   /* 누구 버튼 */
@@ -252,7 +253,7 @@
   /* 버튼 */
   .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
   .btn-save {
-    flex: 1; background: var(--me); color: #fff; border: none; border-radius: 10px;
+    flex: 1; background: var(--accent); color: #fff; border: none; border-radius: 10px;
     padding: 13px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 1rem;
     cursor: pointer; transition: opacity .15s;
   }
