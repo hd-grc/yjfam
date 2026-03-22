@@ -288,6 +288,12 @@
     padding: 12px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer;
   }
   .btn-delete:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-edit {
+    flex: 1; background: #edf5f1; color: var(--wife); border: none; border-radius: 10px;
+    padding: 12px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer;
+    transition: opacity .15s;
+  }
+  .btn-edit:hover { opacity: .8; }
   .btn-close {
     flex: 1; background: var(--bg); border: 2px solid var(--border); border-radius: 10px;
     padding: 12px; font-family: 'Noto Sans KR', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; color: var(--text-soft);
@@ -433,6 +439,7 @@
     <div class="detail-memo" id="detailMemo" style="display:none"></div>
     <div class="detail-actions">
       <button class="btn-delete" id="deleteBtn">🗑️ 삭제</button>
+      <button class="btn-edit" id="editBtn">✏️ 수정</button>
       <button class="btn-close" id="closeDetailBtn">닫기</button>
     </div>
   </div>
@@ -453,6 +460,7 @@ let currentMonth   = new Date().getMonth();
 let selectedWho    = null;
 let selectedShifts = new Set();
 let shiftPanelOpen = false;
+let editingEventId = null; // 수정 중인 이벤트 id (null이면 신규)
 let viewingEventId = null;
 let hiddenWho      = new Set();
 
@@ -491,6 +499,27 @@ async function addEvent(ev) {
   } catch(err) {
     setSyncStatus('error', '저장 실패');
     alert('저장에 실패했습니다. 다시 시도해주세요.');
+  } finally {
+    hideLoading();
+  }
+}
+
+async function updateEvent(ev) {
+  showLoading('수정 중...');
+  try {
+    // 기존 삭제 후 새로 추가 (id 유지)
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action:'delete', id: ev.id })
+    });
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action:'add', ...ev })
+    });
+    await fetchEvents();
+  } catch(err) {
+    setSyncStatus('error', '수정 실패');
+    alert('수정에 실패했습니다. 다시 시도해주세요.');
   } finally {
     hideLoading();
   }
@@ -670,10 +699,13 @@ document.querySelectorAll('.legend-item').forEach(el => {
 
 // ── 일정 추가 모달 ──
 function openAdd(dStr) {
+  editingEventId = null;
   document.getElementById('inputDate').value  = dStr || dateStr(new Date());
   document.getElementById('inputTime').value  = '';
   document.getElementById('inputTitle').value = '';
   document.getElementById('inputMemo').value  = '';
+  document.querySelector('.modal-title').textContent = '📅 일정 추가';
+  document.getElementById('saveBtn').textContent = '저장하기';
   selectedWho    = null;
   selectedShifts = new Set();
   shiftPanelOpen = false;
@@ -748,7 +780,14 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   if (!title && shifts.length === 0) { alert('일정 내용을 입력하거나 근무를 선택해주세요!'); return; }
 
   document.getElementById('addModal').classList.remove('open');
-  await addEvent({ id: uid(), date, time, title, who: selectedWho, memo, shifts });
+
+  if (editingEventId) {
+    // 수정 모드
+    await updateEvent({ id: editingEventId, date, time, title, who: selectedWho, memo, shifts });
+  } else {
+    // 신규 추가
+    await addEvent({ id: uid(), date, time, title, who: selectedWho, memo, shifts });
+  }
 });
 
 // ── 상세 모달 ──
@@ -791,6 +830,47 @@ document.getElementById('closeDetailBtn').addEventListener('click', () => {
 });
 document.getElementById('detailModal').addEventListener('click', e => {
   if (e.target === e.currentTarget) document.getElementById('detailModal').classList.remove('open');
+});
+document.getElementById('editBtn').addEventListener('click', () => {
+  const ev = events.find(e => e.id === viewingEventId);
+  if (!ev) return;
+  document.getElementById('detailModal').classList.remove('open');
+
+  // 수정 모드로 추가 모달 열기
+  editingEventId = ev.id;
+  document.querySelector('.modal-title').textContent = '✏️ 일정 수정';
+  document.getElementById('saveBtn').textContent = '수정 완료';
+  document.getElementById('inputDate').value  = ev.date;
+  document.getElementById('inputTime').value  = ev.time  || '';
+  document.getElementById('inputTitle').value = ev.title || '';
+  document.getElementById('inputMemo').value  = ev.memo  || '';
+
+  // 누구 선택
+  selectedWho = ev.who;
+  document.querySelectorAll('.who-btn').forEach(b => {
+    b.classList.toggle('selected', b.dataset.who === ev.who);
+  });
+  document.getElementById('scheduleFields').style.display = 'block';
+  document.getElementById('shiftToggleBtn').style.display = 'flex';
+
+  // 근무 선택 복원
+  selectedShifts = new Set(ev.shifts || []);
+  document.querySelectorAll('.shift-opt').forEach(b => {
+    b.classList.toggle('selected', selectedShifts.has(b.dataset.shift));
+  });
+  if (selectedShifts.size > 0) {
+    shiftPanelOpen = true;
+    document.getElementById('shiftPanel').classList.add('visible');
+    document.getElementById('shiftToggleBtn').classList.add('active');
+    document.getElementById('shiftToggleIcon').textContent = '✕';
+    document.getElementById('shiftToggleText').textContent = '근무 취소';
+  } else {
+    shiftPanelOpen = false;
+    document.getElementById('shiftPanel').classList.remove('visible');
+    resetShiftToggle();
+  }
+
+  document.getElementById('addModal').classList.add('open');
 });
 document.getElementById('deleteBtn').addEventListener('click', async () => {
   if (!viewingEventId) return;
