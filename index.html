@@ -440,7 +440,7 @@
 
 <script>
 // ── 설정 ──
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_tiVLr7H1HpouSLQjXvb9aBOjBsACa1A_USCt9Ns8IZR0ztaTcv_dOzA5ro6lJ2lm/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMOSFfsvcefUk00Y21gEn29JP9eHLvCKQTZuvSqf2Uni8xXI6hHwpqC0i0tSipeG8/exec';
 
 const WHO_LABEL  = { me:'윤재', wife:'윤정', child:'서원', mom:'서여사님' };
 const SHIFT_ICON = { D:'☀️', E:'🌆', N:'🌙' };
@@ -591,12 +591,16 @@ function renderCalendar() {
     cellEvents.forEach(ev => {
       const hasShift = ev.shifts && ev.shifts.length > 0;
       const hasTitle = ev.title && ev.title.trim();
+      const hasTime  = ev.time  && ev.time.trim();
       if (hasShift) {
         ev.shifts.forEach(s => {
           if (chipCount < MAX) {
             const banner = document.createElement('div');
             banner.className = `shift-banner ${s}`;
-            banner.innerHTML = `${SHIFT_ICON[s]} ${s}${hasTitle ? ' · '+ev.title : ''}`;
+            let label = `${SHIFT_ICON[s]} ${s}`;
+            if (hasTime)  label += ' ' + ev.time.slice(0,5);
+            if (hasTitle) label += ' · ' + ev.title;
+            banner.textContent = label;
             banner.addEventListener('click', e => { e.stopPropagation(); openDetail(ev.id); });
             list.appendChild(banner);
             chipCount++;
